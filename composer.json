@@ -1,0 +1,43 @@
+{
+    "name": "simplon/mailchimp",
+    "description": "MailChimp API wrapper",
+    "homepage": "https://github.com/fightbulc/simplon_mailchimp",
+    "version": "0.0.1",
+    "type": "library",
+    "keywords": ["email", "mailchimp", "api", "wrapper"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tino Ehrich",
+            "email": "opensource@efides.com",
+            "role": "developer"
+        }
+    ],
+
+    "minimum-stability": "stable",
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/fightbulc/Codeception"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4",
+        "fightbulc/php_curl": "1.0.0",
+        "simplon/helper": "0.6.*"
+    },
+
+    "require-dev": {
+        "codeception/codeception": "dev-jsonrpc",
+        "codeception/aspect-mock": "0.4.*",
+        "simplon/config": "0.6.*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Simplon\\MailChimp": "src/"
+        }
+    }
+}

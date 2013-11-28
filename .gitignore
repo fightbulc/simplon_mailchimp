@@ -1,0 +1,6 @@
+.idea/*
+/vendor/*
+/tests/_cache/*
+/tests/_log/*
+/tests/_data/config.php
+composer.lock
