@@ -2,16 +2,13 @@
 
     namespace Simplon\MailChimp\Vo;
 
-    use Simplon\Helper\VoManyFactory;
     use Simplon\Helper\VoSetDataFactory;
 
-    class ListMembersInfoVo
+    class ListMemberBatchUnsubscribeResponseVo
     {
         protected $_successCount;
         protected $_errorCount;
         protected $_errors;
-        protected $_data;
-        protected $_memberVoMany;
 
         // ######################################
 
@@ -25,67 +22,19 @@
                 ->setConditionByKey('success_count', function ($val) { $this->setSuccessCount($val); })
                 ->setConditionByKey('error_count', function ($val) { $this->setErrorCount($val); })
                 ->setConditionByKey('errors', function ($val) { $this->setErrors($val); })
-                ->setConditionByKey('data', function ($val) { $this->setData($val); })
                 ->run();
         }
 
         // ######################################
 
         /**
-         * @param array $data
+         * @param mixed $count
          *
-         * @return ListMembersInfoVo
+         * @return ListMemberBatchUnsubscribeResponseVo
          */
-        public function setData(array $data)
+        public function setSuccessCount($count)
         {
-            $this->_data = $data;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return array
-         */
-        public function getData()
-        {
-            return (array)$this->_data;
-        }
-
-        // ######################################
-
-        /**
-         * @return bool|MemberVo[]
-         */
-        public function getMemberVoMany()
-        {
-            $data = $this->getData();
-
-            if (!empty($data))
-            {
-                /** @var MemberVo[] $memberVoMany */
-                $memberVoMany = VoManyFactory::factory($data, function ($key, $val)
-                {
-                    return new MemberVo($val);
-                });
-
-                return $memberVoMany;
-            }
-
-            return FALSE;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $total
-         *
-         * @return ListMembersInfoVo
-         */
-        public function setSuccessCount($total)
-        {
-            $this->_successCount = $total;
+            $this->_successCount = $count;
 
             return $this;
         }
@@ -103,13 +52,13 @@
         // ######################################
 
         /**
-         * @param mixed $errorCount
+         * @param mixed $count
          *
-         * @return ListMembersInfoVo
+         * @return ListMemberBatchUnsubscribeResponseVo
          */
-        public function setErrorCount($errorCount)
+        public function setErrorCount($count)
         {
-            $this->_errorCount = $errorCount;
+            $this->_errorCount = $count;
 
             return $this;
         }
@@ -129,7 +78,7 @@
         /**
          * @param mixed $errors
          *
-         * @return ListMembersInfoVo
+         * @return ListMemberBatchUnsubscribeResponseVo
          */
         public function setErrors($errors)
         {

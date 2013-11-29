@@ -2,13 +2,15 @@
 
     namespace Simplon\MailChimp;
 
+    use Simplon\MailChimp\Vo\ListMemberBatchSubscribeResponseVo;
     use Simplon\MailChimp\Vo\ListMemberBatchSubscribeVo;
+    use Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeResponseVo;
     use Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeVo;
-    use Simplon\MailChimp\Vo\ListMembersInfoVo;
-    use Simplon\MailChimp\Vo\ListMembersTotalVo;
+    use Simplon\MailChimp\Vo\ListMembersManyByEmailResponseVo;
+    use Simplon\MailChimp\Vo\ListMembersManyResponseVo;
     use Simplon\MailChimp\Vo\ListMemberSubscribeVo;
     use Simplon\MailChimp\Vo\ListMemberUnsubscribeVo;
-    use Simplon\MailChimp\Vo\ListsTotalVo;
+    use Simplon\MailChimp\Vo\ListsManyResponseVo;
 
     class MailChimp
     {
@@ -29,13 +31,13 @@
         // ######################################
 
         /**
-         * @return ListsTotalVo
+         * @return ListsManyResponseVo
          */
         public function retrieveListsMany()
         {
             $response = ChimpConnector::request(ChimpApiConstants::RESOURCE_LISTS_LIST);
 
-            return new ListsTotalVo($response);
+            return new ListsManyResponseVo($response);
         }
 
         // ######################################
@@ -43,7 +45,7 @@
         /**
          * @param $listId
          *
-         * @return ListMembersTotalVo
+         * @return ListMembersManyResponseVo
          */
         public function retrieveListMembersMany($listId)
         {
@@ -52,7 +54,7 @@
                 ['id' => $listId]
             );
 
-            return new ListMembersTotalVo($response);
+            return new ListMembersManyResponseVo($response);
         }
 
         // ######################################
@@ -61,7 +63,7 @@
          * @param $listId
          * @param array $emailMany
          *
-         * @return ListMembersInfoVo
+         * @return ListMembersManyByEmailResponseVo
          */
         public function retrieveListMembersManyByEmail($listId, array $emailMany)
         {
@@ -85,7 +87,7 @@
                 ]
             );
 
-            return new ListMembersInfoVo($response);
+            return new ListMembersManyByEmailResponseVo($response);
         }
 
         // ######################################
@@ -94,7 +96,7 @@
          * @param $listId
          * @param ListMemberSubscribeVo $listMemberSubscribeVo
          *
-         * @return ListMembersInfoVo
+         * @return ListMembersManyByEmailResponseVo
          */
         public function subscribeListMember($listId, ListMemberSubscribeVo $listMemberSubscribeVo)
         {
@@ -150,6 +152,8 @@
         /**
          * @param $listId
          * @param ListMemberBatchSubscribeVo $listMemberBatchSubscribeVo
+         *
+         * @return ListMemberBatchSubscribeResponseVo
          */
         public function batchSubscribeListMember($listId, ListMemberBatchSubscribeVo $listMemberBatchSubscribeVo)
         {
@@ -164,8 +168,7 @@
                 ]
             );
 
-            var_dump($response);
-            exit;
+            return new ListMemberBatchSubscribeResponseVo($response);
         }
 
         // ######################################
@@ -173,6 +176,8 @@
         /**
          * @param $listId
          * @param ListMemberBatchUnsubscribeVo $listMemberBatchUnsubscribeVo
+         *
+         * @return ListMemberBatchUnsubscribeResponseVo
          */
         public function batchUnsubscribeListMember($listId, ListMemberBatchUnsubscribeVo $listMemberBatchUnsubscribeVo)
         {
@@ -187,7 +192,6 @@
                 ]
             );
 
-            var_dump($response);
-            exit;
+            return new ListMemberBatchUnsubscribeResponseVo($response);
         }
     }

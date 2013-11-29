@@ -130,7 +130,8 @@
         $listMemberBatchSubscribeVoMany = [];
 
         $listMemberBatchSubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeMemberVo())
-            ->setEmail('tino@beatguide.me')
+            ->setEmail('tino1234@beatguide.me')
+            ->setEuid('12345678')
             ->setFname('Tino')
             ->setLname('Ehrich');
 
@@ -147,7 +148,8 @@
         // --------------------------------------
 
         $listMemberBatchSubscribeVo = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeVo())
-            ->setListMemberBatchSubscribeMemberVoMany($listMemberBatchSubscribeVoMany);
+            ->setListMemberBatchSubscribeMemberVoMany($listMemberBatchSubscribeVoMany)
+            ->setUpdateExisting(TRUE);
 
         $response = $mailchimp->batchSubscribeListMember('95aed394e7', $listMemberBatchSubscribeVo);
 
@@ -187,4 +189,4 @@
 
     // ##########################################
 
-    $listMemberBatchUnsubscribe();
+    $listMemberBatchSubscribe();

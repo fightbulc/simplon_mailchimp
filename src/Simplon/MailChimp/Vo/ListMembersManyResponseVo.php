@@ -5,7 +5,7 @@
     use Simplon\Helper\VoManyFactory;
     use Simplon\Helper\VoSetDataFactory;
 
-    class ListMembersTotalVo
+    class ListMembersManyResponseVo
     {
         protected $_total;
         protected $_data;
@@ -30,7 +30,7 @@
         /**
          * @param array $data
          *
-         * @return ListMembersTotalVo
+         * @return ListMembersManyResponseVo
          */
         public function setData(array $data)
         {
@@ -77,7 +77,7 @@
         /**
          * @param mixed $total
          *
-         * @return ListMembersTotalVo
+         * @return ListMembersManyResponseVo
          */
         public function setTotal($total)
         {

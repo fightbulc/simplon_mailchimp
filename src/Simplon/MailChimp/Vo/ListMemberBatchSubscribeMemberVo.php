@@ -201,6 +201,7 @@
             return [
                 'FNAME' => $this->getFname(),
                 'LNAME' => $this->getLname(),
+                'MMERGE3'   => '123FFGGHH',
             ];
         }
     }
