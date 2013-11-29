@@ -1,6 +1,6 @@
 <?php
 
-    namespace Simplon\MailChimp;
+    namespace Simplon\MailChimp\Constants;
 
     class ChimpExceptionConstants
     {
@@ -12,4 +12,7 @@
 
         CONST ERROR_RESPONSE_MESSAGE = 'Upps! Something went wrong.';
         CONST ERROR_RESPONSE_CODE = 3;
+
+        CONST ERROR_WEBHOOK_UNKNOWN_MESSAGE = 'Upps! No idea about this webhook *derp';
+        CONST ERROR_WEBHOOK_UNKNOWN_CODE = 4;
     }

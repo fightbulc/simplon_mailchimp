@@ -2,6 +2,9 @@
 
     namespace Simplon\MailChimp;
 
+    use Simplon\MailChimp\Constants\ChimpApiConstants;
+    use Simplon\MailChimp\Constants\ChimpExceptionConstants;
+
     class ChimpConnector
     {
         protected static $_apiKey;

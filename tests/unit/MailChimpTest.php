@@ -6,7 +6,7 @@
     use Simplon\Config\Config;
     use Simplon\MailChimp\ChimpException;
     use Simplon\MailChimp\ChimpExceptionConstants;
-    use Simplon\MailChimp\MailChimp;
+    use Simplon\MailChimp\MailChimpLists;
 
     class MailChimpTest extends Test
     {
@@ -63,7 +63,7 @@
 
         public function testConstructor()
         {
-            $mailchimp = new MailChimp($this->getApiKey());
+            $mailchimp = new MailChimpLists($this->getApiKey());
         }
 
         // ######################################
@@ -72,7 +72,7 @@
         {
             try
             {
-                $mailchimp = new MailChimp('');
+                $mailchimp = new MailChimpLists('');
             }
             catch (ChimpException $e)
             {

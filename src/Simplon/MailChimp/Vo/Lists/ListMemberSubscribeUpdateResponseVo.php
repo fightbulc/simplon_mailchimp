@@ -1,8 +1,10 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
-    class ListMemberBatchUnsubscribeMemberVo
+    use Simplon\Helper\VoSetDataFactory;
+
+    class ListMemberSubscribeUpdateResponseVo
     {
         protected $_email;
         protected $_euid;
@@ -11,9 +13,24 @@
         // ######################################
 
         /**
+         * @param array $data
+         */
+        public function __construct(array $data)
+        {
+            (new VoSetDataFactory())
+                ->setRawData($data)
+                ->setConditionByKey('email', function ($val) { $this->setEmail($val); })
+                ->setConditionByKey('euid', function ($val) { $this->setEuid($val); })
+                ->setConditionByKey('leid', function ($val) { $this->setLeid($val); })
+                ->run();
+        }
+
+        // ######################################
+
+        /**
          * @param mixed $email
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberSubscribeUpdateResponseVo
          */
         public function setEmail($email)
         {
@@ -25,11 +42,11 @@
         // ######################################
 
         /**
-         * @return string
+         * @return mixed
          */
         public function getEmail()
         {
-            return (string)$this->_email;
+            return $this->_email;
         }
 
         // ######################################
@@ -37,7 +54,7 @@
         /**
          * @param mixed $euid
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberSubscribeUpdateResponseVo
          */
         public function setEuid($euid)
         {
@@ -49,11 +66,11 @@
         // ######################################
 
         /**
-         * @return string
+         * @return mixed
          */
         public function getEuid()
         {
-            return (string)$this->_euid;
+            return $this->_euid;
         }
 
         // ######################################
@@ -61,7 +78,7 @@
         /**
          * @param mixed $leid
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberSubscribeUpdateResponseVo
          */
         public function setLeid($leid)
         {
@@ -73,24 +90,10 @@
         // ######################################
 
         /**
-         * @return string
+         * @return mixed
          */
         public function getLeid()
         {
-            return (string)$this->_leid;
-        }
-
-        // ######################################
-
-        /**
-         * @return array
-         */
-        public function getEmailStruct()
-        {
-            return [
-                'email' => $this->getEmail(),
-                'euid'  => $this->getEuid(),
-                'leid'  => $this->getLeid(),
-            ];
+            return $this->_leid;
         }
     }

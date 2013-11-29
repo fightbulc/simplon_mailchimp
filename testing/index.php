@@ -5,7 +5,7 @@
     $config = \Simplon\Config\Config::getInstance()
         ->setConfigPath(__DIR__ . '/../tests/_data/config.php');
 
-    $mailchimp = new \Simplon\MailChimp\MailChimp($config->getConfigByKeys(['apiKey']));
+    $mailchimp = new \Simplon\MailChimp\MailChimpLists($config->getConfigByKeys(['apiKey']));
 
     // ##########################################
 
@@ -13,7 +13,7 @@
 
     $lists = function () use ($mailchimp)
     {
-        $listsVo = $mailchimp->retrieveListsMany();
+        $listsVo = $mailchimp->listsRetrieveMany();
 
         foreach ($listsVo->getListVoMany() as $listVo)
         {
@@ -34,7 +34,7 @@
 
     $listMembers = function () use ($mailchimp)
     {
-        $listMembersTotalVo = $mailchimp->retrieveListMembersMany('95aed394e7');
+        $listMembersTotalVo = $mailchimp->membersRetrieveMany('95aed394e7');
 
         foreach ($listMembersTotalVo->getMemberVoMany() as $memberVo)
         {
@@ -57,7 +57,7 @@
 
     $listMembersByEmail = function () use ($mailchimp)
     {
-        $listMembersInfoVo = $mailchimp->retrieveListMembersManyByEmail(
+        $listMembersInfoVo = $mailchimp->membersRetrieveManyByEmail(
             '6aa8be3f2f',
             [
                 'dad@beatguide.me',
@@ -91,12 +91,12 @@
 
     $listMemberSubscribe = function () use ($mailchimp)
     {
-        $listMemberSubscribeVo = (new \Simplon\MailChimp\Vo\ListMemberSubscribeVo())
+        $listMemberSubscribeVo = (new \Simplon\MailChimp\Vo\Lists\ListMemberSubscribeVo())
             ->setEmail('tino@beatguide.me')
             ->setFname('Tino')
             ->setLname('Ehrich');
 
-        $memberVo = $mailchimp->subscribeListMember('95aed394e7', $listMemberSubscribeVo);
+        $memberVo = $mailchimp->membersSubscribe('95aed394e7', $listMemberSubscribeVo);
 
         var_dump($memberVo);
 
@@ -109,12 +109,12 @@
 
     $listMemberUnsubscribe = function () use ($mailchimp)
     {
-        $listMemberUnsubscribeVo = (new \Simplon\MailChimp\Vo\ListMemberUnsubscribeVo())
+        $listMemberUnsubscribeVo = (new \Simplon\MailChimp\Vo\Lists\ListMemberUnsubscribeVo())
             ->setEmail('tino@beatguide.me')
             ->setDeleteMember(TRUE)
             ->setSendGoodBye(TRUE);
 
-        $response = $mailchimp->unsubscribeListMember('95aed394e7', $listMemberUnsubscribeVo);
+        $response = $mailchimp->membersUnsubscribe('95aed394e7', $listMemberUnsubscribeVo);
 
         var_dump($response);
 
@@ -129,29 +129,19 @@
     {
         $listMemberBatchSubscribeVoMany = [];
 
-        $listMemberBatchSubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeMemberVo())
-            ->setEmail('tino1234@beatguide.me')
-            ->setEuid('12345678')
-            ->setFname('Tino')
-            ->setLname('Ehrich');
-
-        $listMemberBatchSubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeMemberVo())
-            ->setEmail('daniel@beatguide.me')
-            ->setFname('Daniel')
-            ->setLname('Bock');
-
-        $listMemberBatchSubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeMemberVo())
-            ->setEmail('brendon@beatguide.me')
-            ->setFname('Brendon')
-            ->setLname('Blackwell');
+        $listMemberBatchSubscribeVoMany[] = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchSubscribeMemberVo())
+            ->setEmail('tino12345@beatguide.me')
+            ->setFname('Toni')
+            ->setLname('Ehrich')
+            ->addMergeVar('UID', 'XXCC');
 
         // --------------------------------------
 
-        $listMemberBatchSubscribeVo = (new \Simplon\MailChimp\Vo\ListMemberBatchSubscribeVo())
+        $listMemberBatchSubscribeVo = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchSubscribeVo())
             ->setListMemberBatchSubscribeMemberVoMany($listMemberBatchSubscribeVoMany)
             ->setUpdateExisting(TRUE);
 
-        $response = $mailchimp->batchSubscribeListMember('95aed394e7', $listMemberBatchSubscribeVo);
+        $response = $mailchimp->membersSubscribeBatch('95aed394e7', $listMemberBatchSubscribeVo);
 
         var_dump($response);
 
@@ -166,21 +156,21 @@
     {
         $listMemberBatchUnsubscribeVoMany = [];
 
-        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeMemberVo())
+        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchUnsubscribeMemberVo())
             ->setEmail('tino@beatguide.me');
 
-        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeMemberVo())
+        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchUnsubscribeMemberVo())
             ->setEmail('daniel@beatguide.me');
 
-        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeMemberVo())
+        $listMemberBatchUnsubscribeVoMany[] = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchUnsubscribeMemberVo())
             ->setEmail('brendon@beatguide.me');
 
         // --------------------------------------
 
-        $listMemberBatchUnsubscribeVo = (new \Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeVo())
+        $listMemberBatchUnsubscribeVo = (new \Simplon\MailChimp\Vo\Lists\ListMemberBatchUnsubscribeVo())
             ->setListMemberBatchUnsubscribeMemberVoMany($listMemberBatchUnsubscribeVoMany);
 
-        $response = $mailchimp->batchUnsubscribeListMember('95aed394e7', $listMemberBatchUnsubscribeVo);
+        $response = $mailchimp->membersUnsubscribeBatch('95aed394e7', $listMemberBatchUnsubscribeVo);
 
         var_dump($response);
 

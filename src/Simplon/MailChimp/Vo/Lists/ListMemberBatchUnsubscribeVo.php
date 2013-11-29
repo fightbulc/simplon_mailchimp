@@ -1,6 +1,6 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
     class ListMemberBatchUnsubscribeVo
     {
@@ -16,7 +16,7 @@
         /**
          * @param mixed $deleteMember
          *
-         * @return ListMemberUnsubscribeVo
+         * @return ListMemberBatchUnsubscribeVo
          */
         public function setDeleteMember($deleteMember)
         {
@@ -40,7 +40,7 @@
         /**
          * @param mixed $sendNotify
          *
-         * @return ListMemberUnsubscribeVo
+         * @return ListMemberBatchUnsubscribeVo
          */
         public function setSendNotify($sendNotify)
         {
@@ -64,7 +64,7 @@
         /**
          * @param mixed $sendGoodBye
          *
-         * @return ListMemberUnsubscribeVo
+         * @return ListMemberBatchUnsubscribeVo
          */
         public function setSendGoodBye($sendGoodBye)
         {
@@ -86,7 +86,7 @@
         // ######################################
 
         /**
-         * @param \Simplon\MailChimp\Vo\ListMemberBatchUnsubscribeMemberVo[] $listMemberBatchUnsubscribeMemberVoMany
+         * @param \Simplon\MailChimp\Vo\Lists\ListMemberBatchUnsubscribeMemberVo[] $listMemberBatchUnsubscribeMemberVoMany
          *
          * @return ListMemberBatchUnsubscribeVo
          */

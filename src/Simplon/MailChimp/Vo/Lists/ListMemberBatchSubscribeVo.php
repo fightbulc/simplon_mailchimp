@@ -1,6 +1,6 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
     class ListMemberBatchSubscribeVo
     {
@@ -16,7 +16,7 @@
         /**
          * @param mixed $doubleOptin
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberBatchSubscribeVo
          */
         public function setDoubleOptin($doubleOptin)
         {
@@ -40,7 +40,7 @@
         /**
          * @param mixed $replaceInterest
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberBatchSubscribeVo
          */
         public function setReplaceInterests($replaceInterest)
         {
@@ -64,7 +64,7 @@
         /**
          * @param mixed $updateExisting
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberBatchSubscribeVo
          */
         public function setUpdateExisting($updateExisting)
         {
@@ -86,7 +86,7 @@
         // ######################################
 
         /**
-         * @param \Simplon\MailChimp\Vo\ListMemberBatchSubscribeMemberVo[] $listMemberBatchSubscribeMemberVoMany
+         * @param \Simplon\MailChimp\Vo\Lists\ListMemberBatchSubscribeMemberVo[] $listMemberBatchSubscribeMemberVoMany
          *
          * @return ListMemberBatchSubscribeVo
          */

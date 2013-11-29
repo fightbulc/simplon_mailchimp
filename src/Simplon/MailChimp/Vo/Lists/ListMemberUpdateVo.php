@@ -1,24 +1,22 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
     use Simplon\ChimpObjectConstants;
 
-    class ListMemberBatchSubscribeMemberVo
+    class ListMemberUpdateVo
     {
         protected $_email;
-        protected $_euid;
-        protected $_leid;
-        protected $_fname;
-        protected $_lname;
         protected $_emailType;
+        protected $_replaceInterests;
+        protected $_mergeVars;
 
         // ######################################
 
         /**
          * @param mixed $email
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberUpdateVo
          */
         public function setEmail($email)
         {
@@ -40,7 +38,7 @@
         // ######################################
 
         /**
-         * @return ListMemberSubscribeVo
+         * @return ListMemberUpdateVo
          */
         public function setEmailTypeHtml()
         {
@@ -50,7 +48,7 @@
         // ######################################
 
         /**
-         * @return ListMemberSubscribeVo
+         * @return ListMemberUpdateVo
          */
         public function setEmailTypeText()
         {
@@ -62,7 +60,7 @@
         /**
          * @param mixed $emailType
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberUpdateVo
          */
         protected function _setEmailType($emailType)
         {
@@ -84,13 +82,13 @@
         // ######################################
 
         /**
-         * @param mixed $euid
+         * @param mixed $replaceInterest
          *
-         * @return ListMemberSubscribeVo
+         * @return ListMemberUpdateVo
          */
-        public function setEuid($euid)
+        public function setReplaceInterests($replaceInterest)
         {
-            $this->_euid = $euid;
+            $this->_replaceInterests = $replaceInterest;
 
             return $this;
         }
@@ -98,83 +96,11 @@
         // ######################################
 
         /**
-         * @return string
+         * @return bool
          */
-        public function getEuid()
+        public function shouldReplaceInterest()
         {
-            return (string)$this->_euid;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $fname
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setFname($fname)
-        {
-            $this->_fname = $fname;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getFname()
-        {
-            return (string)$this->_fname;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $leid
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setLeid($leid)
-        {
-            $this->_leid = $leid;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getLeid()
-        {
-            return (string)$this->_leid;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $lname
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setLname($lname)
-        {
-            $this->_lname = $lname;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getLname()
-        {
-            return (string)$this->_lname;
+            return (bool)$this->_replaceInterests !== FALSE ? TRUE : FALSE;
         }
 
         // ######################################
@@ -186,9 +112,46 @@
         {
             return [
                 'email' => $this->getEmail(),
-                'euid'  => $this->getEuid(),
-                'leid'  => $this->getLeid(),
             ];
+        }
+
+        // ######################################
+
+        /**
+         * @param $key
+         * @param $value
+         *
+         * @return ListMemberUpdateVo
+         */
+        public function addMergeVar($key, $value)
+        {
+            $this->_mergeVars[$key] = $value;
+
+            return $this;
+        }
+
+        // ######################################
+
+        /**
+         * @param mixed $fname
+         *
+         * @return ListMemberUpdateVo
+         */
+        public function setFname($fname)
+        {
+            return $this->addMergeVar('FNAME', $fname);
+        }
+
+        // ######################################
+
+        /**
+         * @param mixed $lname
+         *
+         * @return ListMemberUpdateVo
+         */
+        public function setLname($lname)
+        {
+            return $this->addMergeVar('LNAME', $lname);
         }
 
         // ######################################
@@ -198,10 +161,6 @@
          */
         public function getMergeVars()
         {
-            return [
-                'FNAME' => $this->getFname(),
-                'LNAME' => $this->getLname(),
-                'MMERGE3'   => '123FFGGHH',
-            ];
+            return (array)$this->_mergeVars;
         }
     }

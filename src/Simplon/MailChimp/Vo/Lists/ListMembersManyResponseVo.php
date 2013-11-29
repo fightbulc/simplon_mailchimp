@@ -1,9 +1,10 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
     use Simplon\Helper\VoManyFactory;
     use Simplon\Helper\VoSetDataFactory;
+    use Simplon\MailChimp\Vo\Lists\Member\MemberVo;
 
     class ListMembersManyResponseVo
     {

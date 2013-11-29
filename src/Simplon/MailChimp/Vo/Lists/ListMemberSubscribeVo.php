@@ -1,21 +1,18 @@
 <?php
 
-    namespace Simplon\MailChimp\Vo;
+    namespace Simplon\MailChimp\Vo\Lists;
 
     use Simplon\ChimpObjectConstants;
 
     class ListMemberSubscribeVo
     {
         protected $_email;
-        protected $_euid;
-        protected $_leid;
-        protected $_fname;
-        protected $_lname;
         protected $_emailType;
         protected $_doubleOptin;
         protected $_updateExisting;
         protected $_replaceInterests;
         protected $_sendWelcome;
+        protected $_mergeVars;
 
         // ######################################
 
@@ -112,102 +109,6 @@
         // ######################################
 
         /**
-         * @param mixed $euid
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setEuid($euid)
-        {
-            $this->_euid = $euid;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getEuid()
-        {
-            return (string)$this->_euid;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $fname
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setFname($fname)
-        {
-            $this->_fname = $fname;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getFname()
-        {
-            return (string)$this->_fname;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $leid
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setLeid($leid)
-        {
-            $this->_leid = $leid;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getLeid()
-        {
-            return (string)$this->_leid;
-        }
-
-        // ######################################
-
-        /**
-         * @param mixed $lname
-         *
-         * @return ListMemberSubscribeVo
-         */
-        public function setLname($lname)
-        {
-            $this->_lname = $lname;
-
-            return $this;
-        }
-
-        // ######################################
-
-        /**
-         * @return string
-         */
-        public function getLname()
-        {
-            return (string)$this->_lname;
-        }
-
-        // ######################################
-
-        /**
          * @param mixed $replaceInterest
          *
          * @return ListMemberSubscribeVo
@@ -286,9 +187,46 @@
         {
             return [
                 'email' => $this->getEmail(),
-                'euid'  => $this->getEuid(),
-                'leid'  => $this->getLeid(),
             ];
+        }
+
+        // ######################################
+
+        /**
+         * @param $key
+         * @param $value
+         *
+         * @return ListMemberSubscribeVo
+         */
+        public function addMergeVar($key, $value)
+        {
+            $this->_mergeVars[$key] = $value;
+
+            return $this;
+        }
+
+        // ######################################
+
+        /**
+         * @param mixed $fname
+         *
+         * @return ListMemberSubscribeVo
+         */
+        public function setFname($fname)
+        {
+            return $this->addMergeVar('FNAME', $fname);
+        }
+
+        // ######################################
+
+        /**
+         * @param mixed $lname
+         *
+         * @return ListMemberSubscribeVo
+         */
+        public function setLname($lname)
+        {
+            return $this->addMergeVar('LNAME', $lname);
         }
 
         // ######################################
@@ -298,9 +236,6 @@
          */
         public function getMergeVars()
         {
-            return [
-                'FNAME' => $this->getFname(),
-                'LNAME' => $this->getLname(),
-            ];
+            return (array)$this->_mergeVars;
         }
     }
