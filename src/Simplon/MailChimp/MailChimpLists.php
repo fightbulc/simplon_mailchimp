@@ -60,7 +60,12 @@
          */
         public function listsRetrieveMany()
         {
-            $response = ChimpConnector::request(ChimpApiConstants::RESOURCE_LISTS_LIST);
+            $response = ChimpConnector::request(
+                ChimpApiConstants::RESOURCE_LISTS_LIST,
+                [
+                    'limit' => 100,
+                ]
+            );
 
             return new ListsManyResponseVo($response);
         }
