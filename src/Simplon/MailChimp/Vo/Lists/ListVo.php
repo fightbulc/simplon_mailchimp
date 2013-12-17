@@ -67,6 +67,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -74,6 +76,8 @@
         {
             return (string)$this->_beamerAddress;
         }
+
+        // ######################################
 
         /**
          * @param mixed $dataCreated
@@ -87,6 +91,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -94,6 +100,8 @@
         {
             return (string)$this->_dateCreated;
         }
+
+        // ######################################
 
         /**
          * @param mixed $defaultFromEmail
@@ -107,6 +115,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -114,6 +124,8 @@
         {
             return (string)$this->_defaultFromEmail;
         }
+
+        // ######################################
 
         /**
          * @param mixed $defaultFromName
@@ -127,6 +139,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -134,6 +148,8 @@
         {
             return (string)$this->_defaultFromName;
         }
+
+        // ######################################
 
         /**
          * @param mixed $defaultLanguage
@@ -147,6 +163,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -154,6 +172,8 @@
         {
             return (string)$this->_defaultLanguage;
         }
+
+        // ######################################
 
         /**
          * @param mixed $defaultSubject
@@ -167,6 +187,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -174,6 +196,8 @@
         {
             return (string)$this->_defaultSubject;
         }
+
+        // ######################################
 
         /**
          * @param mixed $emaiTypeOption
@@ -187,6 +211,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return bool
          */
@@ -194,6 +220,8 @@
         {
             return (bool)$this->_emaiTypeOption !== FALSE ? TRUE : FALSE;
         }
+
+        // ######################################
 
         /**
          * @param mixed $id
@@ -207,6 +235,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -214,6 +244,8 @@
         {
             return (string)$this->_id;
         }
+
+        // ######################################
 
         /**
          * @param mixed $listRating
@@ -227,6 +259,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return int
          */
@@ -234,6 +268,8 @@
         {
             return (int)$this->_listRating;
         }
+
+        // ######################################
 
         /**
          * @param mixed $modules
@@ -247,6 +283,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return array
          */
@@ -254,6 +292,8 @@
         {
             return (array)$this->_modules;
         }
+
+        // ######################################
 
         /**
          * @param mixed $name
@@ -267,6 +307,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -274,6 +316,8 @@
         {
             return (string)$this->_name;
         }
+
+        // ######################################
 
         /**
          * @param mixed $stats
@@ -287,6 +331,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return array
          */
@@ -294,6 +340,18 @@
         {
             return (array)$this->_stats;
         }
+
+        // ######################################
+
+        /**
+         * @return ListStatVo
+         */
+        public function getListStatVo()
+        {
+            return new ListStatVo($this->getStats());
+        }
+
+        // ######################################
 
         /**
          * @param mixed $subscribeUrlLong
@@ -307,13 +365,17 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
-        public function getSubscribeUrlLong()
+        public function getUrlLongSubscribeForm()
         {
             return (string)$this->_subscribeUrlLong;
         }
+
+        // ######################################
 
         /**
          * @param mixed $subscribeUrlShort
@@ -327,13 +389,17 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
-        public function getSubscribeUrlShort()
+        public function getUrlShortSubscribeForm()
         {
             return (string)$this->_subscribeUrlShort;
         }
+
+        // ######################################
 
         /**
          * @param mixed $useAwesomeBar
@@ -347,6 +413,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return bool
          */
@@ -354,6 +422,8 @@
         {
             return (bool)$this->_useAwesomeBar !== FALSE ? TRUE : FALSE;
         }
+
+        // ######################################
 
         /**
          * @param mixed $visibility
@@ -367,6 +437,8 @@
             return $this;
         }
 
+        // ######################################
+
         /**
          * @return string
          */
@@ -374,6 +446,8 @@
         {
             return (string)$this->_visibility;
         }
+
+        // ######################################
 
         /**
          * @param mixed $webId
@@ -386,6 +460,8 @@
 
             return $this;
         }
+
+        // ######################################
 
         /**
          * @return int
