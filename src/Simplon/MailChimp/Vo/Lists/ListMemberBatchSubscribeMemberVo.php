@@ -2,7 +2,7 @@
 
     namespace Simplon\MailChimp\Vo\Lists;
 
-    use Simplon\ChimpObjectConstants;
+    use Simplon\MailChimp\Constants\ChimpObjectConstants;
 
     class ListMemberBatchSubscribeMemberVo
     {
