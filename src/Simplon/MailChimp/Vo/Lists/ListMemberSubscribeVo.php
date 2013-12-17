@@ -212,7 +212,19 @@
          *
          * @return ListMemberSubscribeVo
          */
-        public function setFname($fname)
+        public function setMergeEmail($fname)
+        {
+            return $this->addMergeVar('EMAIL', $fname);
+        }
+
+        // ######################################
+
+        /**
+         * @param mixed $fname
+         *
+         * @return ListMemberSubscribeVo
+         */
+        public function setMergeFirstName($fname)
         {
             return $this->addMergeVar('FNAME', $fname);
         }
@@ -224,7 +236,7 @@
          *
          * @return ListMemberSubscribeVo
          */
-        public function setLname($lname)
+        public function setMergeLastName($lname)
         {
             return $this->addMergeVar('LNAME', $lname);
         }
