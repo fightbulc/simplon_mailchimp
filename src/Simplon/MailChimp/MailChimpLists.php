@@ -91,6 +91,73 @@
 
         /**
          * @param $listId
+         * @param $leid
+         *
+         * @return ListMembersManyByEmailResponseVo|Vo\Lists\Member\MemberVo
+         */
+        public function membersRetrieveByLeid($listId, $leid)
+        {
+            $response = ChimpConnector::request(
+                ChimpApiConstants::RESOURCE_LISTS_MEMBER_INFO,
+                [
+                    'id'     => $listId,
+                    'emails' => [
+                        [
+                            'leid' => $leid,
+                        ],
+                    ],
+                ]
+            );
+
+            $listMembersManyByEmailResponseVo = new ListMembersManyByEmailResponseVo($response);
+
+            if ($listMembersManyByEmailResponseVo->getSuccessCount() > 0)
+            {
+                $memberVoMany = $listMembersManyByEmailResponseVo->getMemberVoMany();
+
+                return $memberVoMany[0];
+            }
+
+            return $listMembersManyByEmailResponseVo;
+        }
+
+        // ######################################
+
+        /**
+         * @param $listId
+         * @param array $leidMany
+         *
+         * @return ListMembersManyByEmailResponseVo
+         */
+        public function membersRetrieveManyByLeid($listId, array $leidMany)
+        {
+            // generate email struct
+            $emailStructs = [];
+
+            foreach ($leidMany as $leid)
+            {
+                $emailStructs[] = [
+                    'leid' => $leid
+                ];
+            }
+
+            // ----------------------------------
+
+            $response = ChimpConnector::request(
+                ChimpApiConstants::RESOURCE_LISTS_MEMBER_INFO,
+                [
+                    'id'     => $listId,
+                    'emails' => $emailStructs,
+                ]
+            );
+
+            return new ListMembersManyByEmailResponseVo($response);
+        }
+
+        // ######################################
+
+        /**
+         * @param $listId
          * @param $email
          *
          * @return ListMembersManyByEmailResponseVo|Vo\Lists\Member\MemberVo
@@ -102,7 +169,9 @@
                 [
                     'id'     => $listId,
                     'emails' => [
-                        'email' => $email
+                        [
+                            'email' => $email,
+                        ],
                     ],
                 ]
             );

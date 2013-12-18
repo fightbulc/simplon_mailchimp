@@ -6,7 +6,7 @@
 
     class ListMemberUpdateVo
     {
-        protected $_email;
+        protected $_leid;
         protected $_emailType;
         protected $_replaceInterests;
         protected $_mergeVars;
@@ -18,9 +18,9 @@
          *
          * @return ListMemberUpdateVo
          */
-        public function setEmail($email)
+        public function setLeid($email)
         {
-            $this->_email = $email;
+            $this->_leid = $email;
 
             return $this;
         }
@@ -28,11 +28,11 @@
         // ######################################
 
         /**
-         * @return string
+         * @return int
          */
-        public function getEmail()
+        public function getLeid()
         {
-            return (string)$this->_email;
+            return (int)$this->_leid;
         }
 
         // ######################################
@@ -111,7 +111,7 @@
         public function getEmailStruct()
         {
             return [
-                'email' => $this->getEmail(),
+                'leid' => $this->getLeid(),
             ];
         }
 
@@ -164,6 +164,26 @@
         public function setMergeLastName($lname)
         {
             return $this->addMergeVar('LNAME', $lname);
+        }
+
+        // ######################################
+
+        /**
+         * @return ListMemberUpdateVo
+         */
+        public function setMergeStatusEnabled()
+        {
+            return $this->addMergeVar('STATUS', 'enabled');
+        }
+
+        // ######################################
+
+        /**
+         * @return ListMemberUpdateVo
+         */
+        public function setMergeStatusDisabled()
+        {
+            return $this->addMergeVar('STATUS', 'disabled');
         }
 
         // ######################################

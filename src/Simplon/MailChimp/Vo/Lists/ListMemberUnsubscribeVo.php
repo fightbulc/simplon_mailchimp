@@ -100,11 +100,11 @@
         // ######################################
 
         /**
-         * @return string
+         * @return int
          */
         public function getLeid()
         {
-            return (string)$this->_leid;
+            return (int)$this->_leid;
         }
 
         // ######################################
